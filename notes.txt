@@ -1,0 +1,1 @@
+array splice-> (which Index, how many) -> return an array of spliced elements
