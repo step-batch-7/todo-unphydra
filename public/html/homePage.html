@@ -9,22 +9,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ToDo</title>
     <link rel="stylesheet" href="../css/homePage.css" />
+    <link rel="stylesheet" href="../css/bigCard.css" />
+    <script src="../js/main.js"></script>
   </head>
   <body>
     <div id="bigCard"></div>
-    <div class="container">
+    <div id="container">
       <div class="headerOfPage">ToDo</div>
       <div class="horizontalLine"></div>
       <div class="sideBox">
         <div class="optionsBox">
-          <div class="options" id="create">Create</div>
+          <div class="options" id="create" onclick="createNewTodo()">
+            Create
+          </div>
         </div>
         <div class="optionsBox">
           <div class="options" id="delete">Delete</div>
         </div>
       </div>
       <div id="allTodoList">
-        <div class="cardBox">
+        <!-- <div class="cardBox">
           <div class="todoCard"></div>
           <div class="topTick">
             <img src="../images/tick.svg" alt="" />
@@ -65,7 +69,7 @@
           <div class="topTick">
             <img src="../images/tick.svg" alt="" />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>

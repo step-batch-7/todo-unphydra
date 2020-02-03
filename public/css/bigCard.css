@@ -1,0 +1,123 @@
+.writeTitle {
+  position: relative;
+  top: 100px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#titleInput {
+  width: 600px;
+  height: 50px;
+
+  position: relative;
+  left: 100px;
+  top: 100px;
+
+  font-style: normal;
+  font-size: 24px;
+  line-height: 29px;
+  align-items: center;
+  text-align: center;
+
+  outline: none;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  border-radius: 8px;
+}
+
+#done {
+  position: relative;
+  top: 200px;
+  right: 255px;
+  width: 100px;
+  height: 50px;
+  outline: none;
+  font-size: 24px;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.heading {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 43px;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: #fce5d2;
+}
+
+.date {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: right;
+
+  color: #ec5e57;
+}
+
+.smallHorizontalLine {
+  height: 5px;
+  background: linear-gradient(90deg, #f2c94c 0%, #eb5757 100%);
+}
+
+#itemList {
+  height: 383px;
+  background-color: transparent;
+  padding: 20px;
+}
+
+.eachItem {
+  height: 30px;
+  background-color: transparent;
+  display: flex;
+}
+
+.eachItem:hover .deleteItem {
+  visibility: visible;
+}
+
+.cardUntick {
+  margin: 3px;
+  height: 24px;
+  width: 24px;
+  background-image: url('file:///Users/step12/myFiles/nodeNet/todo-unphydra/public/images/untick.svg');
+}
+
+.cardTick {
+  height: 18px;
+  width: 18px;
+  margin: 3px;
+  background-image: url('file:///Users/step12/myFiles/nodeNet/todo-unphydra/public/images/tick.svg');
+}
+
+.itemName {
+  width: 690px;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.75);
+
+  margin: 3px;
+}
+
+.deleteItem {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  border-radius: 50%;
+  background-color: white;
+  margin: 5px;
+  text-align: center;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+#itemInput {
+  width: 750px;
+  font-size: 24px;
+}

@@ -3,7 +3,7 @@ body {
   font-family: Apple SD Gothic Neo;
 }
 
-.container {
+#container {
   position: relative;
   margin: 0;
   width: 1440px;
@@ -20,8 +20,9 @@ body {
   left: 320px;
   top: 200px;
 
+  border: 1px solid rgba(255, 255, 255, 0.75);
   display: none;
-  background: #c4c4c4;
+  background: #202124;
   border-radius: 8px;
 }
 
