@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  font-family: Apple SD Gothic Neo;
+}
+
+.container {
+  position: relative;
+  margin: 0;
+  width: 1440px;
+  height: 900px;
+
+  background: #202124;
+}
+
+#bigCard {
+  position: absolute;
+  width: 800px;
+  height: 500px;
+  left: 320px;
+  top: 200px;
+
+  display: none;
+  background: #c4c4c4;
+  border-radius: 8px;
+}
+
+.headerOfPage {
+  position: relative;
+  width: 175px;
+  height: 82px;
+  left: 25px;
+  top: 18px;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 72px;
+  line-height: 86px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #f2c94c;
+}
+
+.horizontalLine {
+  position: relative;
+  width: 1440px;
+  height: 10px;
+  left: 0px;
+  margin-top: 15px;
+
+  background: linear-gradient(90deg, #f2c94c 0%, #eb5757 100%);
+}
+
+.sideBox {
+  position: relative;
+  width: 365px;
+  height: 790px;
+  left: 0px;
+
+  background: #202124;
+}
+
+.optionsBox {
+  position: relative;
+  width: 300px;
+  height: 60px;
+  left: 0px;
+  top: 25px;
+  margin-bottom: 25px;
+
+  background: #f2994a;
+  border: 1px solid #f2994a;
+  box-sizing: border-box;
+  border-radius: 0px 30px 30px 0px;
+}
+
+.options {
+  width: 300px;
+  height: 60px;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 43px;
+  text-align: center;
+  padding-top: 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+#allList {
+  position: absolute;
+  width: 1075px;
+  height: 790px;
+  left: 365px;
+  top: 107px;
+  padding: 25px;
+  /* background-color: white; */
+  background: #202124;
+}
