@@ -22,19 +22,38 @@ const sendHttpReq = function(
   req.send();
 };
 
+const takeItem = function(div) {
+  const id = div.parentElement.id;
+  if (event.keyCode === 13) {
+    const data = { id, item: div.value };
+    const content = JSON.stringify(data);
+    sendHttpReq(
+      'POST',
+      '/addItem',
+      content,
+      'json',
+      'application/json',
+      showTodoList
+    );
+  }
+};
+
 const showTodoList = function(req) {
+  const res = req.response;
+  const html = todoBox(res);
   const card = document.getElementById('bigCard');
-  card.innerHTML = req.responseText;
+  card.innerHTML = html;
 };
 
 const takeTitle = function() {
   const value = document.getElementById('titleInput').value;
+  const content = JSON.stringify({ title: value });
   sendHttpReq(
     'POST',
     '/title',
-    `title=${value}`,
-    null,
-    'application/x-www-form-urlencoded',
+    content,
+    'json',
+    'application/json',
     showTodoList
   );
 };
@@ -44,7 +63,3 @@ const createNewTodo = function() {
   card.style.display = 'block';
   card.innerHTML = titleHtml;
 };
-
-const titleHtml = `<div class="writeTitle">write Title</div>
-<input type="text" id="titleInput" />
-<button id="done" onclick="takeTitle()">Done</button>`;

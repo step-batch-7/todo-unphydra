@@ -67,7 +67,7 @@
   background: linear-gradient(90deg, #f2c94c 0%, #eb5757 100%);
 }
 
-#itemList {
+.itemList {
   height: 383px;
   background-color: transparent;
   padding: 20px;
@@ -87,14 +87,16 @@
   margin: 3px;
   height: 24px;
   width: 24px;
-  background-image: url('file:///Users/step12/myFiles/nodeNet/todo-unphydra/public/images/untick.svg');
+  /* background-image: url('file:///Users/step12/myFiles/nodeNet/todo-unphydra/public/images/untick.svg'); */
+  background-image: url('../images/untick.svg');
 }
 
 .cardTick {
   height: 18px;
   width: 18px;
   margin: 3px;
-  background-image: url('file:///Users/step12/myFiles/nodeNet/todo-unphydra/public/images/tick.svg');
+  /* background-image: url('file:///Users/step12/myFiles/nodeNet/todo-unphydra/public/images/tick.svg'); */
+  background-image: url('../images/tick.svg');
 }
 
 .itemName {
