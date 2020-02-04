@@ -69,21 +69,21 @@ const takeTitle = function() {
   );
 };
 
-const swipeToVisibleOfCard = function(card) {
-  card.classList.remove('noneDisplay');
+const toggleVisibilityOfCard = function(card) {
   const container = getContainer();
-  container.classList.add('bigCardOn');
-};
-
-const swipeToNotVisibleOfCard = function(card) {
+  const classes = Array.from(card.classList);
+  if (classes.includes('noneDisplay')) {
+    card.classList.remove('noneDisplay');
+    container.classList.add('bigCardOn');
+    return;
+  }
   card.classList.add('noneDisplay');
-  const container = getContainer();
   container.classList.remove('bigCardOn');
 };
 
 const createNewTodo = function() {
   const card = getBigCard();
-  swipeToVisibleOfCard(card);
+  toggleVisibilityOfCard(card);
   card.innerHTML = titleHtml;
 };
 
@@ -93,7 +93,7 @@ const closeCard = function() {
 
 const showTodos = function(req) {
   const card = getBigCard();
-  swipeToNotVisibleOfCard(card);
+  toggleVisibilityOfCard(card);
   const allTodoList = getAllTodoList();
   const innerHTML = todoCards(req.response);
   allTodoList.innerHTML = innerHTML;
@@ -101,7 +101,7 @@ const showTodos = function(req) {
 
 const renderTodoInBidCard = function(req) {
   const card = getBigCard();
-  swipeToVisibleOfCard(card);
+  toggleVisibilityOfCard(card);
   card.innerHTML = todoBox(req.response);
 };
 
