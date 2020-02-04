@@ -22,6 +22,10 @@ const sendHttpReq = function(
   req.send();
 };
 
+const getBigCard = () => document.getElementById('bigCard');
+const getContainer = () => document.getElementById('container');
+const getAllTodoList = () => document.getElementById('allTodoList');
+
 const takeItem = function(div) {
   const id = div.parentElement.id;
   if (event.keyCode === 13) {
@@ -44,7 +48,7 @@ const takeItem = function(div) {
 
 const showTodoList = function(req) {
   const html = todoBox(req.response);
-  const card = document.getElementById('bigCard');
+  const card = getBigCard();
   card.innerHTML = html;
 };
 
@@ -65,35 +69,40 @@ const takeTitle = function() {
   );
 };
 
-const createNewTodo = function() {
-  const card = document.getElementById('bigCard');
+const swipeToVisibleOfCard = function(card) {
   card.classList.remove('noneDisplay');
-  const container = document.getElementById('container');
+  const container = getContainer();
   container.classList.add('bigCardOn');
+};
+
+const swipeToNotVisibleOfCard = function(card) {
+  card.classList.add('noneDisplay');
+  const container = getContainer();
+  container.classList.remove('bigCardOn');
+};
+
+const createNewTodo = function() {
+  const card = getBigCard();
+  swipeToVisibleOfCard(card);
   card.innerHTML = titleHtml;
 };
 
 const closeCard = function() {
-  const card = document.getElementById('bigCard');
-  card.classList.add('noneDisplay');
-  const container = document.getElementById('container');
-  container.classList.remove('bigCardOn');
   sendHttpReq('GET', '/status', null, 'json', null, showTodos);
 };
 
 const showTodos = function(req) {
-  const allTodoList = document.getElementById('allTodoList');
+  const card = getBigCard();
+  swipeToNotVisibleOfCard(card);
+  const allTodoList = getAllTodoList();
   const innerHTML = todoCards(req.response);
   allTodoList.innerHTML = innerHTML;
 };
 
 const renderTodoInBidCard = function(req) {
-  const card = document.getElementById('bigCard');
-  card.classList.remove('noneDisplay');
-  const container = document.getElementById('container');
-  container.classList.add('bigCardOn');
-  const res = req.response;
-  card.innerHTML = todoBox(res);
+  const card = getBigCard();
+  swipeToVisibleOfCard(card);
+  card.innerHTML = todoBox(req.response);
 };
 
 const getCardDetails = function() {
