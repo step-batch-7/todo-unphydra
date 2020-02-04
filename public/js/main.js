@@ -67,17 +67,17 @@ const takeTitle = function() {
 
 const createNewTodo = function() {
   const card = document.getElementById('bigCard');
-  card.style.display = 'block';
+  card.classList.remove('noneDisplay');
   const container = document.getElementById('container');
-  container.style.opacity = 0.3;
+  container.classList.add('bigCardOn');
   card.innerHTML = titleHtml;
 };
 
 const closeCard = function() {
   const card = document.getElementById('bigCard');
-  card.style.display = 'none';
+  card.classList.add('noneDisplay');
   const container = document.getElementById('container');
-  container.style.opacity = 1;
+  container.classList.remove('bigCardOn');
   sendHttpReq('GET', '/status', null, 'json', null, showTodos);
 };
 
