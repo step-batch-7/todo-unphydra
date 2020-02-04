@@ -32,7 +32,7 @@ const getDateString = function(dateOb) {
 const getEachItemHtml = function(ext, deleteEnable, item) {
   const html = `<div class="${ext}eachItem" id="${item.id}">
   <div class="${ext}cardUntick">
-  <div class="${ext}cardTick"></div>
+  <div class="${ext}cardTick notVisible"></div>
   </div>
   <div class="${ext}itemName">${item.name}</div>`;
   if (deleteEnable) {

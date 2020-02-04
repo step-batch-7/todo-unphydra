@@ -61,7 +61,7 @@
   height: 18px;
   width: 18px;
   margin: 3px;
-  visibility: hidden;
+  /* visibility: hidden; */
   background-image: url('../images/tick.svg');
 }
 

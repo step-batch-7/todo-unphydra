@@ -94,8 +94,11 @@
   height: 18px;
   width: 18px;
   margin: 3px;
-  visibility: hidden;
   background-image: url('../images/tick.svg');
+}
+
+.notVisible {
+  visibility: hidden;
 }
 
 .itemName {
