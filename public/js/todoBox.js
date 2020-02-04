@@ -51,7 +51,8 @@ const todoBox = function(res) {
       ${listHtml}
         <input type="text" id="itemInput" onkeyup="takeItem(this)"
         placeholder="itemName"></input>
-      </div>`;
+      </div>
+      <button class="closeButton">close</button>`;
 };
 
 const titleHtml = `<div class="writeTitle">write Title</div>
