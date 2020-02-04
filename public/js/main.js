@@ -43,8 +43,7 @@ const takeItem = function(div) {
 };
 
 const showTodoList = function(req) {
-  const res = req.response;
-  const html = todoBox(res);
+  const html = todoBox(req.response);
   const card = document.getElementById('bigCard');
   card.innerHTML = html;
 };
@@ -79,4 +78,11 @@ const closeCard = function() {
   card.style.display = 'none';
   const container = document.getElementById('container');
   container.style.opacity = 1;
+  sendHttpReq('GET', '/status', null, 'json', null, showTodos);
+};
+
+const showTodos = function(req) {
+  const allTodoList = document.getElementById('allTodoList');
+  const innerHTML = todoCards(req.response);
+  allTodoList.innerHTML = innerHTML;
 };

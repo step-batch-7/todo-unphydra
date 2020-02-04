@@ -1,0 +1,74 @@
+.cardBox {
+  height: 320px;
+  width: 320px;
+  /* background-color: white; */
+}
+
+.todoCard {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  left: 9px;
+  top: 9px;
+
+  background: #202124;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+
+.topTick {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  top: -300px;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: rgb(156, 156, 156);
+  align-items: center;
+  visibility: hidden;
+  background-image: url('../images/tick.svg');
+  background-size: 30px;
+}
+
+.todoCard:hover ~ .topTick {
+  visibility: visible;
+}
+.topTick:hover {
+  visibility: visible;
+}
+
+.todoCardTitle {
+  margin-top: 10px;
+  font-size: 28px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.todo-eachItem {
+  height: 22px;
+  padding: 0px 5px;
+  background-color: transparent;
+  display: flex;
+}
+
+.todo-cardUntick {
+  height: 22px;
+  width: 22px;
+  background-image: url('../images/untick.svg');
+}
+
+.todo-cardTick {
+  height: 18px;
+  width: 18px;
+  margin: 3px;
+  visibility: hidden;
+  background-image: url('../images/tick.svg');
+}
+
+.todo-itemName {
+  width: 275px;
+  margin-top: 4px;
+  margin-left: 10px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.75);
+}
