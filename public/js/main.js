@@ -86,3 +86,24 @@ const showTodos = function(req) {
   const innerHTML = todoCards(req.response);
   allTodoList.innerHTML = innerHTML;
 };
+
+const renderTodoInBidCard = function(req) {
+  const card = document.getElementById('bigCard');
+  card.classList.remove('noneDisplay');
+  const container = document.getElementById('container');
+  container.classList.add('bigCardOn');
+  const res = req.response;
+  card.innerHTML = todoBox(res);
+};
+
+const getCardDetails = function() {
+  const content = JSON.stringify({ id: event.target.id });
+  sendHttpReq(
+    'POST',
+    '/cardDetails',
+    content,
+    'json',
+    'application/json',
+    renderTodoInBidCard
+  );
+};

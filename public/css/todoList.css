@@ -4,6 +4,10 @@
   /* background-color: white; */
 }
 
+.cardBox:hover .topTick {
+  visibility: visible;
+}
+
 .todoCard {
   position: relative;
   width: 300px;
@@ -30,9 +34,6 @@
   background-size: 30px;
 }
 
-.todoCard:hover ~ .topTick {
-  visibility: visible;
-}
 .topTick:hover {
   visibility: visible;
 }
@@ -71,4 +72,8 @@
   margin-left: 10px;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.75);
+}
+
+.nonePointer {
+  pointer-events: none;
 }

@@ -53,7 +53,6 @@ const todoBox = function(res) {
     res.items,
     getEachItemHtml.bind(null, '', true)
   );
-
   return `<div class="heading">${res.title}</div>
       <div class="date">${date}</div>
       <div class="smallHorizontalLine"></div>
@@ -72,11 +71,11 @@ const titleHtml = `<div class="writeTitle">write Title</div>
 const getEachTodoHtml = function(todo) {
   const items = getListHtml(
     todo.items,
-    getEachItemHtml.bind(null, 'todo-', false)
+    getEachItemHtml.bind(null, 'nonePointer todo-', false)
   );
-  return `<div class="cardBox" id="${todo.id}">
-   <div class="todoCard">
-     <div class="todoCardTitle">${todo.title}</div>
+  return `<div class="cardBox" id="${todo.id}" onclick="getCardDetails()">
+   <div class="todoCard nonePointer">
+     <div class="todoCardTitle nonePointer">${todo.title}</div>
      ${items}
    </div>
    <div class="topTick"></div>
