@@ -37,7 +37,7 @@ const getEachItemHtml = function(ext, deleteEnable, item) {
   <div class="${ext}itemName">${item.name}</div>`;
   if (deleteEnable) {
     return `${html}
-    <div class="deleteItem" id="${item.id}-d" onclick="deletItem()">X</div>
+    <div class="deleteItem" id="${item.id}-d" onclick="deleteItem()"></div>
     </div>`;
   }
   return `${html}</div>`;
@@ -73,8 +73,8 @@ const getEachTodoHtml = function(todo) {
     todo.items,
     getEachItemHtml.bind(null, 'nonePointer todo-', false)
   );
-  return `<div class="cardBox" id="${todo.id}" onclick="getCardDetails()">
-   <div class="todoCard nonePointer">
+  return `<div class="cardBox" id="${todo.id}-par" >
+   <div class="todoCard" id="${todo.id}" onclick="getCardDetails()">
      <div class="todoCardTitle nonePointer">${todo.title}</div>
      ${items}
    </div>

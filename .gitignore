@@ -5,3 +5,4 @@ node_modules
 public/js/try.js
 public/html/bigCard.html
 database/database.json
+.DS_Store

@@ -117,7 +117,7 @@ const getCardDetails = function() {
   );
 };
 
-const deletItem = function() {
+const deleteItem = function() {
   const [id] = event.target.id.split('-');
   const content = JSON.stringify({ id });
   sendHttpReq(

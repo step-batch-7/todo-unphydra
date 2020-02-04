@@ -13,7 +13,7 @@ body {
   background: #202124;
 }
 
-#bigCard {
+.bigCard {
   position: absolute;
   z-index: 1;
   width: 800px;
@@ -25,10 +25,12 @@ body {
 
   background: #202124;
   border-radius: 8px;
+  transform: scale(1);
+  transition: 100ms ease-in-out;
 }
 
 .noneDisplay {
-  display: none;
+  transform: scale(0);
 }
 
 .headerOfPage {
