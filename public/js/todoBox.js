@@ -37,7 +37,7 @@ const getEachItemHtml = function(ext, deleteEnable, item) {
   <div class="${ext}itemName">${item.name}</div>`;
   if (deleteEnable) {
     return `${html}
-    <div class="deleteItem">X</div>
+    <div class="deleteItem" id="${item.id}-d" onclick="deletItem()">X</div>
     </div>`;
   }
   return `${html}</div>`;

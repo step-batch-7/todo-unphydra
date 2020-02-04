@@ -47,8 +47,8 @@ const takeItem = function(div) {
 };
 
 const showTodoList = function(req) {
-  const html = todoBox(req.response);
   const card = getBigCard();
+  const html = todoBox(req.response);
   card.innerHTML = html;
 };
 
@@ -114,5 +114,18 @@ const getCardDetails = function() {
     'json',
     'application/json',
     renderTodoInBidCard
+  );
+};
+
+const deletItem = function() {
+  const [id] = event.target.id.split('-');
+  const content = JSON.stringify({ id });
+  sendHttpReq(
+    'POST',
+    '/deleteItem',
+    content,
+    'json',
+    'application/json',
+    showTodoList
   );
 };
