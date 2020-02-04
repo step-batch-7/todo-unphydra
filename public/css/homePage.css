@@ -4,13 +4,19 @@ body {
   background: #202124;
 }
 
-#container {
+.container {
   position: relative;
   margin: 0;
   width: 1440px;
   height: 900px;
 
   background: #202124;
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.bigCardOn {
+  opacity: 0.2;
 }
 
 .bigCard {
@@ -108,8 +114,4 @@ body {
   flex-wrap: wrap;
   overflow-y: scroll;
   background: #202124;
-}
-
-.bigCardOn {
-  opacity: 0.3;
 }

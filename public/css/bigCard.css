@@ -78,6 +78,7 @@
   height: 30px;
   background-color: transparent;
   display: flex;
+  margin: 2px 0px;
 }
 
 .eachItem:hover .deleteItem {
