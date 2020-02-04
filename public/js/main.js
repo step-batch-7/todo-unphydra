@@ -25,6 +25,10 @@ const sendHttpReq = function(
 const takeItem = function(div) {
   const id = div.parentElement.id;
   if (event.keyCode === 13) {
+    if (div.value === '') {
+      alert('please give a item name');
+      return;
+    }
     const data = { id, item: div.value };
     const content = JSON.stringify(data);
     sendHttpReq(
@@ -47,6 +51,10 @@ const showTodoList = function(req) {
 
 const takeTitle = function() {
   const value = document.getElementById('titleInput').value;
+  if (value === '') {
+    alert('please give a title');
+    return;
+  }
   const content = JSON.stringify({ title: value });
   sendHttpReq(
     'POST',
@@ -61,5 +69,14 @@ const takeTitle = function() {
 const createNewTodo = function() {
   const card = document.getElementById('bigCard');
   card.style.display = 'block';
+  const container = document.getElementById('container');
+  container.style.opacity = 0.3;
   card.innerHTML = titleHtml;
+};
+
+const closeCard = function() {
+  const card = document.getElementById('bigCard');
+  card.style.display = 'none';
+  const container = document.getElementById('container');
+  container.style.opacity = 1;
 };

@@ -52,7 +52,7 @@ const todoBox = function(res) {
         <input type="text" id="itemInput" onkeyup="takeItem(this)"
         placeholder="itemName"></input>
       </div>
-      <button class="closeButton">close</button>`;
+      <button class="closeButton" onclick="closeCard()">close</button>`;
 };
 
 const titleHtml = `<div class="writeTitle">write Title</div>

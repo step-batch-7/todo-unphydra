@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: Apple SD Gothic Neo;
+  background: #202124;
 }
 
 #container {
@@ -21,7 +22,7 @@ body {
   top: 200px;
 
   border: 1px solid rgba(255, 255, 255, 0.75);
-  /* display: none; */
+  display: none;
   background: #202124;
   border-radius: 8px;
 }
