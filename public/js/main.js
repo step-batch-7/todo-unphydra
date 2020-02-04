@@ -1,3 +1,7 @@
+const main = function() {
+  sendHttpReq('GET', '/status', null, 'json', null, showTodoOnLoad);
+};
+
 const sendHttpReq = function(
   method,
   url,
@@ -25,6 +29,12 @@ const sendHttpReq = function(
 const getBigCard = () => document.getElementById('bigCard');
 const getContainer = () => document.getElementById('container');
 const getAllTodoList = () => document.getElementById('allTodoList');
+
+const showTodoOnLoad = function(req) {
+  const allTodoList = getAllTodoList();
+  const innerHTML = todoCards(req.response);
+  allTodoList.innerHTML = innerHTML;
+};
 
 const takeItem = function(div) {
   const id = div.parentElement.id;
@@ -99,7 +109,7 @@ const showTodos = function(req) {
   allTodoList.innerHTML = innerHTML;
 };
 
-const renderTodoInBidCard = function(req) {
+const renderTodoInBigCard = function(req) {
   const card = getBigCard();
   toggleVisibilityOfCard(card);
   card.innerHTML = todoBox(req.response);
@@ -113,7 +123,7 @@ const getCardDetails = function() {
     content,
     'json',
     'application/json',
-    renderTodoInBidCard
+    renderTodoInBigCard
   );
 };
 
