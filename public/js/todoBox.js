@@ -74,11 +74,11 @@ const getEachTodoHtml = function(todo) {
     getEachItemHtml.bind(null, 'nonePointer todo-', false)
   );
   return `<div class="cardBox" id="${todo.id}-par" >
+  <div class="topTick" onclick="toggleSelection(this,${todo.id})"></div>
    <div class="todoCard" id="${todo.id}" onclick="getCardDetails()">
      <div class="todoCardTitle nonePointer">${todo.title}</div>
      ${items}
    </div>
-   <div class="topTick" onclick="toggleSelection(this,${todo.id})"></div>
  </div>`;
 };
 

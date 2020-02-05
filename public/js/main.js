@@ -1,5 +1,5 @@
 const main = function() {
-  sendHttpReq('GET', '/status', null, 'json', null, showTodoOnLoad);
+  getStatus();
 };
 
 const sendHttpReq = function(
@@ -30,6 +30,10 @@ const getBigCard = () => document.getElementById('bigCard');
 const getContainer = () => document.getElementById('container');
 const getAllTodoList = () => document.getElementById('allTodoList');
 const getTodoCard = id => document.getElementById(id);
+
+const getStatus = function() {
+  sendHttpReq('GET', '/status', null, 'json', null, showTodoOnLoad);
+};
 
 const showTodoOnLoad = function(req) {
   const allTodoList = getAllTodoList();
@@ -161,4 +165,16 @@ const toggleSelection = function(tickDiv, id) {
   todoCard.classList.add('topTickClick');
   tickDiv.classList.add('topTickVisibility');
   selectedTodos.push(id);
+};
+
+const deletTodos = function() {
+  const content = JSON.stringify(selectedTodos);
+  sendHttpReq(
+    'POST',
+    '/deleteTodos',
+    content,
+    null,
+    'application/json',
+    getStatus
+  );
 };
