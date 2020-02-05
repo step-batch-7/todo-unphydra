@@ -73,17 +73,14 @@ const takeTitle = function() {
     alert('please give a title');
     return;
   }
-  const date = new Date();
-  const id = date.getTime().toString();
-
-  const content = JSON.stringify({ title: value, date: date, id: id });
+  const content = JSON.stringify({ title: value });
   sendHttpReq(
     'POST',
-    '/takeTitle',
+    '/title',
     content,
-    null,
+    'json',
     'application/json',
-    getTodoDetails.bind(null, id)
+    showTodoList
   );
 };
 
@@ -120,18 +117,20 @@ const showTodos = function(req) {
 
 const renderTodoInBigCard = function(req) {
   const card = getBigCard();
+  toggleVisibilityOfCard(card);
   card.innerHTML = todoBox(req.response);
 };
 
-const getTodoDetails = function(id) {
-  const url = `/cardDetails?id=${id}`;
-  sendHttpReq('GET', url, null, 'json', null, renderTodoInBigCard);
-};
-
-const fetchTodo = function(id) {
-  const card = getBigCard();
-  toggleVisibilityOfCard(card);
-  getTodoDetails(id);
+const getCardDetails = function() {
+  const content = JSON.stringify({ id: event.target.id });
+  sendHttpReq(
+    'POST',
+    '/cardDetails',
+    content,
+    'json',
+    'application/json',
+    renderTodoInBigCard
+  );
 };
 
 const deleteItem = function() {
