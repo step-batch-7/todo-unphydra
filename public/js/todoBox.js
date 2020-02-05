@@ -84,8 +84,9 @@ const getEachTodoHtml = function(todo) {
 
 const todoCards = function(res) {
   let div = '';
-  for (const todo in res) {
+  const ids = Object.keys(res).reverse();
+  ids.forEach(todo => {
     div += getEachTodoHtml(res[todo]);
-  }
+  });
   return div;
 };
