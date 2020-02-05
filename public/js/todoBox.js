@@ -75,7 +75,7 @@ const getEachTodoHtml = function(todo) {
   );
   return `<div class="cardBox" id="${todo.id}-par" >
   <div class="topTick" onclick="toggleSelection(this,${todo.id})"></div>
-   <div class="todoCard" onclick="fetchTodo(${todo.id})">
+   <div class="todoCard" id="${todo.id}" onclick="fetchTodo(${todo.id})">
      <div class="todoCardTitle nonePointer">${todo.title}</div>
      ${items}
    </div>
