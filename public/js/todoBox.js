@@ -37,7 +37,7 @@ const getEachItemHtml = function(ext, deleteEnable, item) {
   <div class="${ext}itemName">${item.name}</div>`;
   if (deleteEnable) {
     return `${html}
-    <div class="deleteItem" id="${item.id}-d" onclick="deleteItem()"></div>
+    <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>
     </div>`;
   }
   return `${html}</div>`;
@@ -59,13 +59,13 @@ const todoBox = function(res) {
       <div class="itemList" id="${res.id}">
       ${listHtml}
         <input type="text" id="itemInput" onkeyup="takeItem(this)"
-        placeholder="itemName"></input>
+        placeholder="itemName" autofocus></input>
       </div>
       <button class="closeButton" onclick="closeCard()">close</button>`;
 };
 
-const titleHtml = `<div class="writeTitle">write Title</div>
-<input type="text" id="titleInput" />
+const titleHtml = `<div class="writeTitle">Write Title</div>
+<input type="text" id="titleInput" autofocus/>
 <button id="done" onclick="takeTitle()">Done</button>`;
 
 const getEachTodoHtml = function(todo) {

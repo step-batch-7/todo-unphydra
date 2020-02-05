@@ -58,6 +58,7 @@
   font-size: 24px;
   line-height: 29px;
   text-align: right;
+  padding-right: 20px;
 
   color: #ec5e57;
 }
@@ -81,8 +82,13 @@
   margin: 2px 0px;
 }
 
-.eachItem:hover .deleteItem {
+.eachItem:hover .deleteLogo {
   visibility: visible;
+}
+
+.eachItem:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
 }
 
 .cardUntick {
@@ -111,7 +117,7 @@
   margin: 3px;
 }
 
-.deleteItem {
+.deleteLogo {
   width: 20px;
   background: url('../images/trash-alt-solid.svg') no-repeat center;
   visibility: hidden;
@@ -119,8 +125,17 @@
 }
 
 #itemInput {
+  background-color: transparent;
+  border: none;
   width: 750px;
   font-size: 24px;
+  outline: none;
+  cursor: inherit;
+  color: rgba(255, 255, 255, 0.75);
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 5px;
+  padding-right: 0px;
 }
 
 .closeButton {
