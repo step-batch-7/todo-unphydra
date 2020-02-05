@@ -29,18 +29,31 @@ const getDateString = function(dateOb) {
   return `${month} ${date} ${day}`;
 };
 
-const getEachItemHtml = function(ext, deleteEnable, item) {
-  const html = `<div class="${ext}eachItem" id="${item.id}">
-  <div class="${ext}cardUntick">
-  <div class="${ext}cardTick notVisible"></div>
-  </div>
-  <div class="${ext}itemName">${item.name}</div>`;
-  if (deleteEnable) {
-    return `${html}
-    <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>
-    </div>`;
+const genItemHtmlForAllList = function(item) {
+  let tickEle = '<div class="nonePointer todo-cardTick notVisible"></div>';
+  if (item.status) {
+    tickEle = '<div class="nonePointer todo-cardTick"></div>';
   }
-  return `${html}</div>`;
+  return `<div class="nonePointer todo-eachItem" id="${item.id}">
+  <div class="nonePointer todo-cardUntick">
+  ${tickEle}
+  </div>
+  <div class="nonePointer todo-itemName">${item.name}</div>
+  </div>`;
+};
+
+const generateItemHtmlForTodoBox = function(item) {
+  let tickEle = '<div class="cardTick notVisible"></div>';
+  if (item.status) {
+    tickEle = '<div class="cardTick"></div>';
+  }
+  return `<div class="eachItem" id="${item.id}">
+  <div class="cardUntick" onclick="toggleDone(${item.id})">
+  ${tickEle}
+  </div>
+  <div class="itemName">${item.name}</div>
+  <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>
+  </div>`;
 };
 
 const getListHtml = function(list, mapper) {
@@ -49,10 +62,7 @@ const getListHtml = function(list, mapper) {
 
 const todoBox = function(res) {
   const date = getDateString(new Date(res.date));
-  const listHtml = getListHtml(
-    res.items,
-    getEachItemHtml.bind(null, '', true)
-  );
+  const listHtml = getListHtml(res.items, generateItemHtmlForTodoBox);
   return `<div class="heading">${res.title}</div>
       <div class="date">${date}</div>
       <div class="smallHorizontalLine"></div>
@@ -69,10 +79,7 @@ const titleHtml = `<div class="writeTitle">Write Title</div>
 <button id="done" onclick="takeTitle()">Done</button>`;
 
 const getEachTodoHtml = function(todo) {
-  const items = getListHtml(
-    todo.items,
-    getEachItemHtml.bind(null, 'nonePointer todo-', false)
-  );
+  const items = getListHtml(todo.items, genItemHtmlForAllList);
   return `<div class="cardBox" id="${todo.id}-par" >
   <div class="topTick" onclick="toggleSelection(this,${todo.id})"></div>
    <div class="todoCard" id="${todo.id}" onclick="getCardDetails()">

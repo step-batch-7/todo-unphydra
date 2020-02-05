@@ -30,6 +30,9 @@ const getBigCard = () => document.getElementById('bigCard');
 const getContainer = () => document.getElementById('container');
 const getAllTodoList = () => document.getElementById('allTodoList');
 const getElement = id => document.getElementById(id);
+const getChildTick = id =>
+  document.getElementById(id).children[0].children[0];
+const getArray = classes => Array.from(classes);
 
 const getStatus = function() {
   sendHttpReq('GET', '/status', null, 'json', null, showTodoOnLoad);
@@ -91,7 +94,7 @@ const takeTitle = function() {
 
 const toggleVisibilityOfCard = function(card) {
   const container = getContainer();
-  const classes = Array.from(card.classList);
+  const classes = getArray(card.classList);
   if (classes.includes('noneDisplay')) {
     card.classList.remove('noneDisplay');
     container.classList.add('bigCardOn');
@@ -185,4 +188,14 @@ const deletTodos = function() {
     'application/json',
     getStatus
   );
+};
+
+const toggleDone = function(id) {
+  const tick = getChildTick(id);
+  const classes = getArray(tick.classList);
+  if (classes.includes('notVisible')) {
+    tick.classList.remove('notVisible');
+    return;
+  }
+  tick.classList.add('notVisible');
 };
