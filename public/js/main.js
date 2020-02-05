@@ -92,6 +92,7 @@ const toggleVisibilityOfCard = function(card) {
     container.classList.add('bigCardOn');
     return;
   }
+  card.innerHTML = '';
   card.classList.add('noneDisplay');
   container.classList.remove('bigCardOn');
 };
@@ -108,7 +109,6 @@ const closeCard = function() {
 
 const showTodos = function(req) {
   const card = getBigCard();
-  card.innerHTML = '';
   toggleVisibilityOfCard(card);
   const allTodoList = getAllTodoList();
   const innerHTML = todoCards(req.response);
