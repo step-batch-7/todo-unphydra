@@ -20,6 +20,10 @@
   overflow-y: scroll;
 }
 
+.topTickClick {
+  border: 2px solid white;
+}
+
 .todoCard::-webkit-scrollbar {
   display: none;
 }
@@ -31,11 +35,16 @@
   top: 22px;
   z-index: 1;
   border-radius: 50%;
-  background-color: rgb(156, 156, 156);
+  background-color: rgb(241, 241, 241);
   align-items: center;
   visibility: hidden;
-  background-image: url('../images/tick.svg');
-  background-size: 30px;
+  background: url('../images/check-solid.svg') no-repeat center;
+  background-size: 16px;
+  background-color: white;
+}
+
+.topTickVisibility {
+  visibility: visible;
 }
 
 .topTick:hover {

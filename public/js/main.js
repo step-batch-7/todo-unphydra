@@ -29,6 +29,7 @@ const sendHttpReq = function(
 const getBigCard = () => document.getElementById('bigCard');
 const getContainer = () => document.getElementById('container');
 const getAllTodoList = () => document.getElementById('allTodoList');
+const getTodoCard = id => document.getElementById(id);
 
 const showTodoOnLoad = function(req) {
   const allTodoList = getAllTodoList();
@@ -103,6 +104,7 @@ const closeCard = function() {
 
 const showTodos = function(req) {
   const card = getBigCard();
+  card.innerHTML = '';
   toggleVisibilityOfCard(card);
   const allTodoList = getAllTodoList();
   const innerHTML = todoCards(req.response);
@@ -138,4 +140,25 @@ const deleteItem = function() {
     'application/json',
     showTodoList
   );
+};
+
+const selectedTodos = [];
+
+const removeFromSelected = function(id) {
+  const index = selectedTodos.indexOf(id);
+  const noOfIterate = 1;
+  selectedTodos.splice(index, noOfIterate);
+};
+
+const toggleSelection = function(tickDiv, id) {
+  const todoCard = getTodoCard(id);
+  if (selectedTodos.includes(id)) {
+    todoCard.classList.remove('topTickClick');
+    tickDiv.classList.remove('topTickVisibility');
+    removeFromSelected(id);
+    return;
+  }
+  todoCard.classList.add('topTickClick');
+  tickDiv.classList.add('topTickVisibility');
+  selectedTodos.push(id);
 };

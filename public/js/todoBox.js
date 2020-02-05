@@ -78,7 +78,7 @@ const getEachTodoHtml = function(todo) {
      <div class="todoCardTitle nonePointer">${todo.title}</div>
      ${items}
    </div>
-   <div class="topTick"></div>
+   <div class="topTick" onclick="toggleSelection(this,${todo.id})"></div>
  </div>`;
 };
 
