@@ -59,13 +59,13 @@ const todoBox = function(res) {
       <div class="itemList" id="${res.id}">
       ${listHtml}
         <input type="text" id="itemInput" onkeyup="takeItem(this)"
-        placeholder="itemName" autofocus></input>
+        placeholder="itemName"></input>
       </div>
       <button class="closeButton" onclick="closeCard()">close</button>`;
 };
 
 const titleHtml = `<div class="writeTitle">Write Title</div>
-<input type="text" id="titleInput" autofocus/>
+<input type="text" id="titleInput"/>
 <button id="done" onclick="takeTitle()">Done</button>`;
 
 const getEachTodoHtml = function(todo) {

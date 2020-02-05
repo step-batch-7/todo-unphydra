@@ -29,7 +29,7 @@ const sendHttpReq = function(
 const getBigCard = () => document.getElementById('bigCard');
 const getContainer = () => document.getElementById('container');
 const getAllTodoList = () => document.getElementById('allTodoList');
-const getTodoCard = id => document.getElementById(id);
+const getElement = id => document.getElementById(id);
 
 const getStatus = function() {
   sendHttpReq('GET', '/status', null, 'json', null, showTodoOnLoad);
@@ -61,10 +61,15 @@ const takeItem = function(div) {
   }
 };
 
+const enableFocus = function(id) {
+  const itemList = document.getElementById(id);
+  itemList.lastElementChild.focus();
+};
+
 const showTodoList = function(req) {
   const card = getBigCard();
-  const html = todoBox(req.response);
-  card.innerHTML = html;
+  card.innerHTML = todoBox(req.response);
+  enableFocus(req.response.id);
 };
 
 const takeTitle = function() {
@@ -101,6 +106,8 @@ const createNewTodo = function() {
   const card = getBigCard();
   toggleVisibilityOfCard(card);
   card.innerHTML = titleHtml;
+  const titleInput = getElement('titleInput');
+  titleInput.focus();
 };
 
 const closeCard = function() {
@@ -119,6 +126,7 @@ const renderTodoInBigCard = function(req) {
   const card = getBigCard();
   toggleVisibilityOfCard(card);
   card.innerHTML = todoBox(req.response);
+  enableFocus(req.response.id);
 };
 
 const getCardDetails = function() {
@@ -155,7 +163,7 @@ const removeFromSelected = function(id) {
 };
 
 const toggleSelection = function(tickDiv, id) {
-  const todoCard = getTodoCard(id);
+  const todoCard = getElement(id);
   if (selectedTodos.includes(id)) {
     todoCard.classList.remove('topTickClick');
     tickDiv.classList.remove('topTickVisibility');

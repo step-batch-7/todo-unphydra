@@ -17,6 +17,7 @@ body {
 
 .bigCardOn {
   opacity: 0.2;
+  pointer-events: none;
 }
 
 .bigCard {
@@ -101,6 +102,7 @@ body {
   text-align: center;
   padding-top: 12px;
   color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
 }
 
 #allTodoList {
