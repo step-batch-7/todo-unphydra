@@ -157,7 +157,7 @@ const deleteItem = function() {
   );
 };
 
-const selectedTodos = [];
+let selectedTodos = [];
 
 const removeFromSelected = function(id) {
   const index = selectedTodos.indexOf(id);
@@ -180,6 +180,7 @@ const toggleSelection = function(tickDiv, id) {
 
 const deletTodos = function() {
   const content = JSON.stringify(selectedTodos);
+  selectedTodos = [];
   sendHttpReq(
     'POST',
     '/deleteTodos',
@@ -190,12 +191,26 @@ const deletTodos = function() {
   );
 };
 
+const sendTickStatus = function(id, status) {
+  const content = JSON.stringify({ id, status: status });
+  sendHttpReq(
+    'POST',
+    '/itemTickStatus',
+    content,
+    null,
+    'application/json',
+    () => {}
+  );
+};
+
 const toggleDone = function(id) {
   const tick = getChildTick(id);
   const classes = getArray(tick.classList);
   if (classes.includes('notVisible')) {
     tick.classList.remove('notVisible');
+    sendTickStatus(id, true);
     return;
   }
+  sendTickStatus(id, false);
   tick.classList.add('notVisible');
 };

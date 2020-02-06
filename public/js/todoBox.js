@@ -48,7 +48,7 @@ const generateItemHtmlForTodoBox = function(item) {
     tickEle = '<div class="cardTick"></div>';
   }
   return `<div class="eachItem" id="${item.id}">
-  <div class="cardUntick" onclick="toggleDone(${item.id})">
+  <div class="cardUntick" onclick="toggleDone('${item.id}')">
   ${tickEle}
   </div>
   <div class="itemName">${item.name}</div>
