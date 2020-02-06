@@ -185,9 +185,9 @@ const deletTodos = function() {
     'POST',
     '/deleteTodos',
     content,
-    null,
+    'json',
     'application/json',
-    getStatus
+    showTodoOnLoad
   );
 };
 
