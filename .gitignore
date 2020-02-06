@@ -6,3 +6,5 @@ public/js/try.js
 public/html/bigCard.html
 database
 .DS_Store
+.nyc_output
+resource
