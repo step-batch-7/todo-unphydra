@@ -214,3 +214,26 @@ const toggleDone = function(id) {
   sendTickStatus(id, false);
   tick.classList.add('notVisible');
 };
+
+const checkEdited = function(div, id) {
+  if (div.innerText === '') {
+    alert('please give a item name');
+    return;
+  }
+  div.focus = false;
+  div.parentElement.classList.remove('inputEnable');
+  const data = { id, item: div.innerText };
+  const content = JSON.stringify(data);
+  sendHttpReq(
+    'POST',
+    '/updateItem',
+    content,
+    'json',
+    'application/json',
+    showTodoList
+  );
+};
+
+const enableBorder = function(div) {
+  div.parentElement.classList.add('inputEnable');
+};
