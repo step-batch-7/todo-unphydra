@@ -68,48 +68,31 @@ body {
 }
 
 .sideBox {
-  position: relative;
   width: 365px;
-  left: 0px;
-
   background: #202124;
 }
 
-.optionsBox {
-  position: relative;
-  width: 300px;
-  height: 60px;
-  left: 0px;
-  top: 25px;
-  margin-bottom: 25px;
-
-  background: #f2994a;
-  border: 1px solid #f2994a;
-  box-sizing: border-box;
-  border-radius: 0px 30px 30px 0px;
-}
-
 .options {
-  width: 300px;
-  height: 60px;
-
-  font-style: normal;
+  width: 200px;
+  height: 36px;
   font-weight: bold;
   font-size: 36px;
-  line-height: 43px;
   text-align: center;
-  padding-top: 12px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
+  background: #f2994a;
+  border-radius: 0px 30px 30px 0px;
+  margin: 20px 0px;
+  padding: 7px 0px;
 }
 
 #allTodoList {
   position: absolute;
-  width: 1025px;
+  width: 960px;
   max-height: 630px;
-  left: 365px;
+  left: 320px;
   top: 107px;
-  padding: 25px;
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
