@@ -48,7 +48,7 @@ const getListHtml = function(list, mapper) {
 };
 
 const todoBox = function(res) {
-  const date = getDateString(new Date(res.date));
+  const date = getDateString(new Date(res.id));
   const listHtml = getListHtml(res.items, generateItemHtmlForTodoBox);
   return `<input class="heading" value="${res.title}" 
       onfocusout="updateTitle(this,'${res.id}')">
