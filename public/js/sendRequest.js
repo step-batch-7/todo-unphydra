@@ -96,7 +96,7 @@ const deleteItem = function(id) {
 };
 
 const deleteTodos = function() {
-  const content = JSON.stringify(selectedTodos);
+  const content = JSON.stringify(selectedTodoS);
   // eslint-disable-next-line no-implicit-globals
   selectedTodoS = [];
   sendHttpReq(
