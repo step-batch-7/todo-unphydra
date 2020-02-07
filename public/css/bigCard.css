@@ -44,13 +44,15 @@
 }
 
 .heading {
-  font-style: normal;
   font-weight: bold;
   font-size: 36px;
-  line-height: 43px;
   margin-top: 20px;
-  margin-left: 20px;
   color: #fce5d2;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  width: 760px;
+  padding: 0px 20px;
 }
 
 .date {
@@ -71,8 +73,12 @@
 .itemList {
   height: 310px;
   background-color: transparent;
-  padding: 20px;
+  margin: 20px;
   overflow-y: scroll;
+}
+
+.itemList::-webkit-scrollbar {
+  display: none;
 }
 
 .eachItem {
@@ -109,7 +115,7 @@
 }
 
 .itemName {
-  width: 690px;
+  width: 709px;
   font-size: 24px;
   color: rgba(255, 255, 255, 0.75);
 
@@ -127,7 +133,7 @@
   visibility: hidden;
   cursor: pointer;
   height: 20px;
-  margin-top: 7px;
+  margin-top: 5px;
 }
 
 .inputEnable {
@@ -154,6 +160,7 @@
   left: 260px;
   width: 80px;
   font-size: 24px;
+  margin-top: 12px;
   outline: none;
   border-radius: 8px;
   background: transparent;

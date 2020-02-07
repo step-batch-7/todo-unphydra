@@ -230,7 +230,7 @@ const modifyItemList = function(req) {
   div.innerHTML = genItemInnerHtml(req.response.item);
 };
 
-const checkEdited = function(div, id) {
+const updateItem = function(div, id) {
   if (div.value === '') {
     alert('please give a item name');
     return;
@@ -251,4 +251,25 @@ const checkEdited = function(div, id) {
 const enableBorder = function(div) {
   div.parentElement.classList.add('inputEnable');
   div.focus();
+};
+
+const modifyTitle = function(input, req) {
+  input.value = req.response.title;
+};
+
+const updateTitle = function(input, id) {
+  if (input.value === '') {
+    alert('please give a title');
+    return;
+  }
+  const data = { id, title: input.value };
+  const content = JSON.stringify(data);
+  sendHttpReq(
+    'POST',
+    '/updateTitle',
+    content,
+    'json',
+    'application/json',
+    modifyTitle.bind(null, input)
+  );
 };

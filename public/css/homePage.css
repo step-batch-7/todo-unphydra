@@ -8,7 +8,6 @@ body {
   position: relative;
   margin: 0;
   width: 1440px;
-  height: 900px;
 
   background: #202124;
   opacity: 1;
@@ -71,7 +70,6 @@ body {
 .sideBox {
   position: relative;
   width: 365px;
-  height: 790px;
   left: 0px;
 
   background: #202124;
@@ -108,7 +106,7 @@ body {
 #allTodoList {
   position: absolute;
   width: 1025px;
-  max-height: 740px;
+  max-height: 630px;
   left: 365px;
   top: 107px;
   padding: 25px;

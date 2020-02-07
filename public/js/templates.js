@@ -51,7 +51,7 @@ const genItemInnerHtml = function(item) {
   ${tickEle}
   </div>
   <input class="itemName" onmousedown="enableBorder(this)" 
-  onfocusout="checkEdited(this,'${item.id}')" value="${item.name}">
+  onfocusout="updateItem(this,'${item.id}')" value="${item.name}">
   <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>`;
 };
 
@@ -68,7 +68,7 @@ const getListHtml = function(list, mapper) {
 const todoBox = function(res) {
   const date = getDateString(new Date(res.date));
   const listHtml = getListHtml(res.items, generateItemHtmlForTodoBox);
-  return `<div class="heading">${res.title}</div>
+  return `<input class="heading" value="${res.title}" onfocusout="updateTitle(this,'${res.id}')">
       <div class="date">${date}</div>
       <div class="smallHorizontalLine"></div>
       <div class="itemList" id="${res.id}">
