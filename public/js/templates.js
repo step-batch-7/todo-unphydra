@@ -29,19 +29,6 @@ const getDateString = function(dateOb) {
   return `${month} ${date} ${day}`;
 };
 
-const genItemInnerHtml = function(item) {
-  let tickEle = '<div class="cardTick notVisible"></div>';
-  if (item.status) {
-    tickEle = '<div class="cardTick"></div>';
-  }
-  return `<div class="cardUntick" onclick="toggleDone('${item.id}')">
-  ${tickEle}
-  </div>
-  <input class="itemName" onmousedown="enableBorder(this)" 
-  onfocusout="checkEdited(this,'${item.id}')" value="${item.name}">
-  <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>`;
-};
-
 const genItemHtmlForAllList = function(item) {
   let tickEle = '<div class="nonePointer todo-cardTick notVisible"></div>';
   if (item.status) {
@@ -55,11 +42,20 @@ const genItemHtmlForAllList = function(item) {
   </div>`;
 };
 
-const generateItemHtmlForTodoBox = function(item) {
+const genItemInnerHtml = function(item) {
   let tickEle = '<div class="cardTick notVisible"></div>';
   if (item.status) {
     tickEle = '<div class="cardTick"></div>';
   }
+  return `<div class="cardUntick" onclick="toggleDone('${item.id}')">
+  ${tickEle}
+  </div>
+  <input class="itemName" onmousedown="enableBorder(this)" 
+  onfocusout="checkEdited(this,'${item.id}')" value="${item.name}">
+  <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>`;
+};
+
+const generateItemHtmlForTodoBox = function(item) {
   return `<div class="eachItem" id="${item.id}">
   ${genItemInnerHtml(item)}
   </div>`;
