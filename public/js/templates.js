@@ -1,33 +1,14 @@
 /* eslint-disable no-unused-vars */
-const months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-];
-const days = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday'
-];
-
 const getDateString = function(dateOb) {
-  const month = months[dateOb.getMonth()];
-  const day = days[dateOb.getDay()];
-  const date = dateOb.getDate();
-  return `${month} ${date} ${day}`;
+  const options = {
+    calender: 'indian',
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+  const date = Intl.DateTimeFormat('en-IN', options).format(dateOb);
+  return date.replace(/,/g, '');
 };
 
 const genItemHtmlForAllList = function(item) {
