@@ -152,6 +152,11 @@ const getCardDetails = function() {
   );
 };
 
+const removeItemFormList = function(req) {
+  const item = getElement(req.response.id);
+  item.remove();
+};
+
 const deleteItem = function(id) {
   const content = JSON.stringify({ id });
   sendHttpReq(
@@ -160,7 +165,7 @@ const deleteItem = function(id) {
     content,
     'json',
     'application/json',
-    showTodoList
+    removeItemFormList
   );
 };
 
@@ -185,6 +190,15 @@ const toggleSelection = function(tickDiv, id) {
   selectedTodos.push(id);
 };
 
+const removeTodosFromList = function(req) {
+  console.log(req.response);
+
+  req.response.forEach(id => {
+    const todo = getElement(`${id}-par`);
+    todo.remove();
+  });
+};
+
 const deletTodos = function() {
   const content = JSON.stringify(selectedTodos);
   selectedTodos = [];
@@ -194,7 +208,7 @@ const deletTodos = function() {
     content,
     'json',
     'application/json',
-    showTodoOnLoad
+    removeTodosFromList
   );
 };
 
