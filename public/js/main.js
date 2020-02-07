@@ -44,8 +44,17 @@ const showTodoOnLoad = function(req) {
   allTodoList.innerHTML = innerHTML;
 };
 
-const takeItem = function(div) {
-  const id = div.parentElement.id;
+const addItemToList = function(req) {
+  const itemList = getElement(req.response.id);
+  const div = document.createElement('div');
+  div.classList.add('eachItem');
+  div.id = req.response.item.id;
+  div.innerHTML = makeItemInnerHtml(req.response.item);
+  itemList.appendChild(div);
+  itemList.scrollTop = itemList.scrollHeight;
+};
+
+const takeItem = function(div, id) {
   if (event.keyCode === 13) {
     if (div.value === '') {
       alert('please give a item name');
@@ -53,13 +62,14 @@ const takeItem = function(div) {
     }
     const data = { id, item: div.value };
     const content = JSON.stringify(data);
+    div.value = '';
     sendHttpReq(
       'POST',
       '/addItem',
       content,
       'json',
       'application/json',
-      showTodoList
+      addItemToList
     );
   }
 };
@@ -72,7 +82,7 @@ const enableFocus = function(id) {
 const showTodoList = function(req) {
   const card = getBigCard();
   card.innerHTML = todoBox(req.response);
-  enableFocus(req.response.id);
+  // enableFocus(req.response.id);
 };
 
 const takeTitle = function() {
@@ -129,7 +139,7 @@ const renderTodoInBigCard = function(req) {
   const card = getBigCard();
   toggleVisibilityOfCard(card);
   card.innerHTML = todoBox(req.response);
-  enableFocus(req.response.id);
+  // enableFocus(req.response.id);
 };
 
 const getCardDetails = function() {
@@ -215,12 +225,16 @@ const toggleDone = function(id) {
   tick.classList.add('notVisible');
 };
 
+const modifyItemList = function(req) {
+  let div = getElement(req.response.item.id);
+  div.innerHTML = makeItemInnerHtml(req.response.item);
+};
+
 const checkEdited = function(div, id) {
   if (div.value === '') {
     alert('please give a item name');
     return;
   }
-  div.focus = false;
   div.parentElement.classList.remove('inputEnable');
   const data = { id, item: div.value };
   const content = JSON.stringify(data);
@@ -230,10 +244,11 @@ const checkEdited = function(div, id) {
     content,
     'json',
     'application/json',
-    showTodoList
+    modifyItemList
   );
 };
 
 const enableBorder = function(div) {
   div.parentElement.classList.add('inputEnable');
+  div.focus();
 };

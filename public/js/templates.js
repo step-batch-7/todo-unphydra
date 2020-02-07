@@ -29,6 +29,19 @@ const getDateString = function(dateOb) {
   return `${month} ${date} ${day}`;
 };
 
+const makeItemInnerHtml = function(item) {
+  let tickEle = '<div class="cardTick notVisible"></div>';
+  if (item.status) {
+    tickEle = '<div class="cardTick"></div>';
+  }
+  return `<div class="cardUntick" onclick="toggleDone('${item.id}')">
+  ${tickEle}
+  </div>
+  <input class="itemName" onmousedown="enableBorder(this)" 
+  onfocusout="checkEdited(this,'${item.id}')" value="${item.name}">
+  <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>`;
+};
+
 const genItemHtmlForAllList = function(item) {
   let tickEle = '<div class="nonePointer todo-cardTick notVisible"></div>';
   if (item.status) {
@@ -51,7 +64,7 @@ const generateItemHtmlForTodoBox = function(item) {
   <div class="cardUntick" onclick="toggleDone('${item.id}')">
   ${tickEle}
   </div>
-  <input class="itemName" onfocus="enableBorder(this)" onfocusout="checkEdited(this,'${item.id}')" value="${item.name}">
+  <input class="itemName" onmousedown="enableBorder(this)" onfocusout="checkEdited(this,'${item.id}')" value="${item.name}">
   <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>
   </div>`;
 };
@@ -68,10 +81,18 @@ const todoBox = function(res) {
       <div class="smallHorizontalLine"></div>
       <div class="itemList" id="${res.id}">
       ${listHtml}
-        <input type="text" class="itemInput" onkeyup="takeItem(this)"
-        placeholder="List new item..."></input>
       </div>
-      <button class="closeButton" onclick="closeCard()">Done</button>`;
+      <div class="footer">
+      <input
+        type="text"
+        class="itemInput"
+        onkeyup="takeItem(this,${res.id})"
+        placeholder="itemName"
+        autofocus
+      />
+      <button class="addItem"></button>
+      <button class="closeButton" onclick="closeCard()">Done</button>
+    </div>`;
 };
 
 const titleHtml = `<div class="writeTitle">Write Title</div>
