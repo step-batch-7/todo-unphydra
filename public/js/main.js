@@ -49,7 +49,7 @@ const addItemToList = function(req) {
   const div = document.createElement('div');
   div.classList.add('eachItem');
   div.id = req.response.item.id;
-  div.innerHTML = makeItemInnerHtml(req.response.item);
+  div.innerHTML = genItemInnerHtml(req.response.item);
   itemList.appendChild(div);
   itemList.scrollTop = itemList.scrollHeight;
 };
@@ -227,7 +227,7 @@ const toggleDone = function(id) {
 
 const modifyItemList = function(req) {
   let div = getElement(req.response.item.id);
-  div.innerHTML = makeItemInnerHtml(req.response.item);
+  div.innerHTML = genItemInnerHtml(req.response.item);
 };
 
 const checkEdited = function(div, id) {

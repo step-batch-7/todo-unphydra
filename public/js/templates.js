@@ -29,7 +29,7 @@ const getDateString = function(dateOb) {
   return `${month} ${date} ${day}`;
 };
 
-const makeItemInnerHtml = function(item) {
+const genItemInnerHtml = function(item) {
   let tickEle = '<div class="cardTick notVisible"></div>';
   if (item.status) {
     tickEle = '<div class="cardTick"></div>';
