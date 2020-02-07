@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const months = [
   'Jan',
   'Feb',
@@ -68,7 +69,8 @@ const getListHtml = function(list, mapper) {
 const todoBox = function(res) {
   const date = getDateString(new Date(res.date));
   const listHtml = getListHtml(res.items, generateItemHtmlForTodoBox);
-  return `<input class="heading" value="${res.title}" onfocusout="updateTitle(this,'${res.id}')">
+  return `<input class="heading" value="${res.title}" 
+      onfocusout="updateTitle(this,'${res.id}')">
       <div class="date">${date}</div>
       <div class="smallHorizontalLine"></div>
       <div class="itemList" id="${res.id}">
