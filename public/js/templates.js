@@ -61,11 +61,7 @@ const generateItemHtmlForTodoBox = function(item) {
     tickEle = '<div class="cardTick"></div>';
   }
   return `<div class="eachItem" id="${item.id}">
-  <div class="cardUntick" onclick="toggleDone('${item.id}')">
-  ${tickEle}
-  </div>
-  <input class="itemName" onmousedown="enableBorder(this)" onfocusout="checkEdited(this,'${item.id}')" value="${item.name}">
-  <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>
+  ${genItemInnerHtml(item)}
   </div>`;
 };
 
