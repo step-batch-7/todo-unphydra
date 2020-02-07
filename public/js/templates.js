@@ -42,10 +42,6 @@ const genItemHtmlForAllList = function(item) {
   </div>`;
 };
 
-{
-  /* <div class="itemName">${item.name}</div> */
-}
-
 const generateItemHtmlForTodoBox = function(item) {
   let tickEle = '<div class="cardTick notVisible"></div>';
   if (item.status) {
@@ -55,7 +51,7 @@ const generateItemHtmlForTodoBox = function(item) {
   <div class="cardUntick" onclick="toggleDone('${item.id}')">
   ${tickEle}
   </div>
-  <div contenteditable="true" role="textbox" class="itemName" spellcheck="false" onfocus="enableBorder(this)" onfocusout="checkEdited(this,'${item.id}')">${item.name}</div>
+  <input class="itemName" onfocus="enableBorder(this)" onfocusout="checkEdited(this,'${item.id}')" value="${item.name}">
   <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>
   </div>`;
 };

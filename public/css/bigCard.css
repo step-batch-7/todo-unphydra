@@ -113,8 +113,11 @@
   font-size: 24px;
   color: rgba(255, 255, 255, 0.75);
 
-  margin: 3px;
+  align-self: center;
   outline: none;
+  background-color: transparent;
+  border: none;
+  height: 26px;
   overflow-y: hidden;
 }
 

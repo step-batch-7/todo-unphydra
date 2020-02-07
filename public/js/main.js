@@ -216,13 +216,13 @@ const toggleDone = function(id) {
 };
 
 const checkEdited = function(div, id) {
-  if (div.innerText === '') {
+  if (div.value === '') {
     alert('please give a item name');
     return;
   }
   div.focus = false;
   div.parentElement.classList.remove('inputEnable');
-  const data = { id, item: div.innerText };
+  const data = { id, item: div.value };
   const content = JSON.stringify(data);
   sendHttpReq(
     'POST',
