@@ -82,7 +82,6 @@ const enableFocus = function(id) {
 const showTodoList = function(req) {
   const card = getBigCard();
   card.innerHTML = todoBox(req.response);
-  // enableFocus(req.response.id);
 };
 
 const takeTitle = function() {
@@ -139,7 +138,6 @@ const renderTodoInBigCard = function(req) {
   const card = getBigCard();
   toggleVisibilityOfCard(card);
   card.innerHTML = todoBox(req.response);
-  // enableFocus(req.response.id);
 };
 
 const getCardDetails = function() {
@@ -154,8 +152,7 @@ const getCardDetails = function() {
   );
 };
 
-const deleteItem = function() {
-  const [id] = event.target.id.split('-');
+const deleteItem = function(id) {
   const content = JSON.stringify({ id });
   sendHttpReq(
     'POST',

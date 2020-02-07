@@ -52,7 +52,7 @@ const genItemInnerHtml = function(item) {
   </div>
   <input class="itemName" onmousedown="enableBorder(this)" 
   onfocusout="updateItem(this,'${item.id}')" value="${item.name}">
-  <div class="deleteLogo" id="${item.id}-d" onclick="deleteItem()"></div>`;
+  <div class="deleteLogo" onclick="deleteItem('${item.id}')"></div>`;
 };
 
 const generateItemHtmlForTodoBox = function(item) {
