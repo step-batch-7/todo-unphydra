@@ -2,30 +2,6 @@ const main = function() {
   getStatus();
 };
 
-const sendHttpReq = function(
-  method,
-  url,
-  data,
-  expectType,
-  contentType,
-  callback
-) {
-  const req = new XMLHttpRequest();
-  req.onload = () => {
-    callback(req);
-  };
-  req.open(method, url);
-  if (expectType) {
-    req.responseType = expectType;
-  }
-  if (data) {
-    req.setRequestHeader('Content-Type', contentType);
-    req.send(data);
-    return;
-  }
-  req.send();
-};
-
 const getBigCard = () => document.getElementById('bigCard');
 const getContainer = () => document.getElementById('container');
 const getAllTodoList = () => document.getElementById('allTodoList');
@@ -33,16 +9,6 @@ const getElement = id => document.getElementById(id);
 const getChildTick = id =>
   document.getElementById(id).children[0].children[0];
 const getArray = classes => Array.from(classes);
-
-const getStatus = function() {
-  sendHttpReq('GET', '/status', null, 'json', null, showTodoOnLoad);
-};
-
-const showTodoOnLoad = function(req) {
-  const allTodoList = getAllTodoList();
-  const innerHTML = todoCards(req.response);
-  allTodoList.innerHTML = innerHTML;
-};
 
 const addItemToList = function(req) {
   const itemList = getElement(req.response.id);
