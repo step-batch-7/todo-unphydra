@@ -116,12 +116,22 @@ describe('test server', () => {
     });
 
     it('should delete an item from the todo', done => {
+      const expected = new RegExp('{"id":"1480530600000:0"}');
       request(app.serve.bind(app))
         .post('/deleteItem')
         .send({ id: '1480530600000:0' })
         .set('Accept', 'application/json')
         .expect('content-type', 'application/json')
-        .expect(200, done);
+        .expect(expected)
+        .expect(200)
+        .end(() => {
+          database['1480530600000'].items = [];
+          sinon.assert.calledOnce(fakeWriteFile);
+          assert.ok(
+            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          );
+          done();
+        });
     });
   });
 });
