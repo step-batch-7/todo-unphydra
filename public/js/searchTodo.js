@@ -4,8 +4,8 @@ const getTitle = todo => todo.lastElementChild.firstElementChild.innerText;
 
 const getName = item => item.lastElementChild.innerText;
 
-const isTextMatch = function(searchText, getContent, container) {
-  const content = getContent(container);
+const isTextMatch = function(searchText, getContent, target) {
+  const content = getContent(target);
   return content.includes(searchText);
 };
 
