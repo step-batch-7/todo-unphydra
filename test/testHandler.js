@@ -5,18 +5,20 @@ const fs = require('fs');
 const app = require('../lib/handlers');
 const database = require('./resource/database.json');
 describe('test server', () => {
-  let fakeWriteFile;
-  let dir;
-  let clock;
-  before(() => {
+  let fakeWriteFile, dir, clock, path;
+  beforeEach(() => {
     fakeWriteFile = sinon.fake();
     sinon.replace(fs, 'writeFileSync', fakeWriteFile);
     dir = __dirname;
     clock = sinon.useFakeTimers(new Date(2016, 11, 1).getTime());
+    path = `${dir}/resource/database.json`;
   });
-  after(() => {
+
+  afterEach(() => {
+    clock.restore();
     sinon.restore();
   });
+
   describe('get home page', () => {
     it('should give the home page', done => {
       request(app.serve.bind(app))
@@ -43,16 +45,42 @@ describe('test server', () => {
         .send({ title: 'abcde' })
         .set('Accept', 'application/json')
         .expect('content-type', 'application/json')
-        .expect(/{"title":"abcde","id":[0-9]+,"items":\[\]}/)
+        .expect(/{"title":"abcde","id":1480530600000,"items":\[\]}/)
         .expect(200)
         .end(() => {
-          const path = `${dir}/resource/database.json`;
           database['1480530600000'] = {
             title: 'abcde',
             id: 1480530600000,
             items: [],
             noOfItem: 0
           };
+          sinon.assert.calledOnce(fakeWriteFile);
+          assert.ok(
+            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          );
+          done();
+        });
+    });
+
+    it('should add an item to the particular todo', done => {
+      const expected = new RegExp(
+        '{"id":1480530600000,' +
+          '"item":{"name":"task","id":"1480530600000:0","status":false}}'
+      );
+      request(app.serve.bind(app))
+        .post('/addItem')
+        .send({ id: 1480530600000, item: 'task' })
+        .set('Accept', 'application/json')
+        .expect('content-type', 'application/json')
+        .expect(expected)
+        .expect(200)
+        .end(() => {
+          database['1480530600000'].items.push({
+            name: 'task',
+            id: '1480530600000:0',
+            status: false
+          });
+          database['1480530600000'].noOfItem = 1;
           sinon.assert.calledOnce(fakeWriteFile);
           assert.ok(
             fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
