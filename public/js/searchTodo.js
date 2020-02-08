@@ -4,50 +4,43 @@ const getTitle = todo => todo.lastElementChild.firstElementChild.innerText;
 
 const getName = item => item.lastElementChild.innerText;
 
-const isTitleMatch = function(text, todo) {
-  const title = getTitle(todo);
-  return title.includes(text);
+const isTextMatch = function(searchText, getContent, container) {
+  const content = getContent(container);
+  return content.includes(searchText);
 };
 
-const isItemNameMatched = function(text, item) {
-  const name = getName(item);
-  return name.includes(text);
-};
-
-const isTodoOfItemMatched = function(text, todo) {
-  const allItem = getArray(getElements(todo, 'todo-eachItem'));
-  allItem.forEach(item => {
-    item.style.display = 'none';
-  });
-  const filteredItem = allItem.filter(isItemNameMatched.bind(null, text));
-  filteredItem.forEach(item => {
-    item.style.display = '';
-  });
-  return filteredItem.length;
-};
-
-const searchTodoByTitle = function(input) {
-  const text = input.value;
-  const allTodo = getArray(getElements(document, 'cardBox'));
-  allTodo.forEach(todo => {
-    todo.style.display = 'none';
-  });
-  const filteredTodo = allTodo.filter(isTitleMatch.bind(null, text));
-  filteredTodo.forEach(todo => {
-    todo.style.display = 'block';
-  });
-};
-
-const searchItemInTodo = function(input) {
-  const text = input.value;
-  const allTodo = getArray(getElements(document, 'cardBox'));
-  allTodo.forEach(todo => {
-    todo.style.display = 'none';
-  });
-  const filteredTodo = allTodo.filter(
-    isTodoOfItemMatched.bind(null, text)
+const isTodoOfItemMatched = function(searchText, todo) {
+  return searchAndShow(
+    todo,
+    isTextMatch.bind(null, searchText, getName),
+    'todo-eachItem'
   );
-  filteredTodo.forEach(todo => {
-    todo.style.display = 'block';
+};
+
+const searchItemInTodoByName = function(searchText) {
+  searchAndShow(
+    document,
+    isTodoOfItemMatched.bind(null, searchText),
+    'cardBox'
+  );
+};
+
+const searchTodoByTitle = function(searchText) {
+  searchAndShow(
+    document,
+    isTextMatch.bind(null, searchText, getTitle),
+    'cardBox'
+  );
+};
+
+const searchAndShow = function(box, predicate, className) {
+  const allList = getArray(getElements(box, className));
+  allList.forEach(list => {
+    list.style.display = 'none';
   });
+  const filteredList = allList.filter(predicate);
+  filteredList.forEach(list => {
+    list.style.display = '';
+  });
+  return filteredList.length;
 };
