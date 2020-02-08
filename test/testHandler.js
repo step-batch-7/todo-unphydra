@@ -92,6 +92,33 @@ describe('test server', () => {
         });
     });
 
+    it('should add another item to the particular todo', done => {
+      const expected = new RegExp(
+        '{"id":1480530600000,' +
+          '"item":{"name":"task2","id":"1480530600000:1","status":false}}'
+      );
+      request(app.serve.bind(app))
+        .post('/addItem')
+        .send({ id: 1480530600000, item: 'task2' })
+        .set('Accept', 'application/json')
+        .expect('content-type', 'application/json')
+        .expect(expected)
+        .expect(200)
+        .end(() => {
+          database['1480530600000'].items.push({
+            name: 'task2',
+            id: '1480530600000:1',
+            status: false
+          });
+          database['1480530600000'].noOfItem = 2;
+          sinon.assert.calledOnce(fakeWriteFile);
+          assert.ok(
+            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          );
+          done();
+        });
+    });
+
     it('should update an item name', done => {
       const expected = new RegExp(
         '{"id":1480530600000,' +
@@ -140,7 +167,7 @@ describe('test server', () => {
         .expect(expected)
         .expect(200)
         .end(() => {
-          database['1480530600000'].items = [];
+          database['1480530600000'].items.splice(0, 1);
           sinon.assert.calledOnce(fakeWriteFile);
           assert.ok(
             fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
