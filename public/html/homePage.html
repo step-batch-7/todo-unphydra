@@ -16,6 +16,7 @@
     <script src="../js/itemIterator.js"></script>
     <script src="../js/todoIterator.js"></script>
     <script src="../js/templates.js"></script>
+    <script src="../js/searchTodo.js"></script>
   </head>
   <body onload="main()">
     <div id="bigCard" class="bigCard noneDisplay"></div>
@@ -35,6 +36,7 @@
             type="search"
             class="searchInput"
             placeholder="Search Todo"
+            oninput="searchTodo(this)"
           />
         </div>
       </div>
