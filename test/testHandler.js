@@ -39,7 +39,7 @@ describe('test server', () => {
   });
 
   describe('POST', () => {
-    it('should add a todo with the given titile', done => {
+    it('should add a todo with the given title', done => {
       const expected = new RegExp(
         '{"title":"abcde","id":1480530600000,"items":\\[\\]}'
       );
@@ -185,6 +185,17 @@ describe('test server', () => {
           sinon.assert.notCalled(fakeWriteFile);
           done();
         });
+    });
+
+    it('should delete a todo from the list', done => {
+      const expected = new RegExp('["148053060000"]');
+      request(app.serve.bind(app))
+        .post('/deleteTodos')
+        .send(['1480530600000'])
+        .set('Accept', 'application/json')
+        .expect('content-type', 'application/json')
+        .expect(expected)
+        .expect(200, done);
     });
   });
 });
