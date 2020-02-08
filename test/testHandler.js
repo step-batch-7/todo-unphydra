@@ -117,9 +117,17 @@ describe('test server', () => {
     it('should change the item status', done => {
       request(app.serve.bind(app))
         .post('/itemTickStatus')
-        .send({ id: '1480530600000:0', item: 'update' })
+        .send({ id: '1480530600000:0', status: true })
         .set('Accept', 'application/json')
-        .expect(200, done);
+        .expect(200)
+        .end(() => {
+          database['1480530600000'].items[0].status = true;
+          sinon.assert.calledOnce(fakeWriteFile);
+          assert.ok(
+            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          );
+          done();
+        });
     });
 
     it('should delete an item from the todo', done => {
