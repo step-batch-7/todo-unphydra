@@ -104,7 +104,15 @@ describe('test server', () => {
         .set('Accept', 'application/json')
         .expect('content-type', 'application/json')
         .expect(expected)
-        .expect(200, done);
+        .expect(200)
+        .end(() => {
+          database['1480530600000'].items[0].name = 'update';
+          sinon.assert.calledOnce(fakeWriteFile);
+          assert.ok(
+            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          );
+          done();
+        });
     });
   });
 });
