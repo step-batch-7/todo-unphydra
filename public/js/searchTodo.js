@@ -7,7 +7,7 @@ const isTitleMatch = function(text, todo) {
   return title.includes(text);
 };
 
-const searchTodo = function(input) {
+const searchTodoByTitle = function(input) {
   const text = input.value;
   const allTodo = getArray(getElements('cardBox'));
   allTodo.forEach(todo => {
