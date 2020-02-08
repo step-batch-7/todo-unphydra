@@ -133,5 +133,18 @@ describe('test server', () => {
           done();
         });
     });
+
+    it('should update a todo title', done => {
+      const expected = new RegExp(
+        '{"title":"newTitle","id":1480530600000,"items":\\[\\]}'
+      );
+      request(app.serve.bind(app))
+        .post('/updateTitle')
+        .send({ id: '1480530600000', title: 'newTitle' })
+        .set('Accept', 'application/json')
+        .expect('content-type', 'application/json')
+        .expect(expected)
+        .expect(200, done);
+    });
   });
 });
