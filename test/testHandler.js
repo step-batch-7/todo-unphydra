@@ -195,7 +195,15 @@ describe('test server', () => {
         .set('Accept', 'application/json')
         .expect('content-type', 'application/json')
         .expect(expected)
-        .expect(200, done);
+        .expect(200)
+        .end(() => {
+          delete database['1480530600000'];
+          sinon.assert.calledOnce(fakeWriteFile);
+          assert.ok(
+            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          );
+          done();
+        });
     });
   });
 });
