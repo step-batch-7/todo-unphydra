@@ -161,5 +161,18 @@ describe('test server', () => {
           done();
         });
     });
+
+    it('should give todo details', done => {
+      const expected = new RegExp(
+        '{"title":"newTitle","id":1480530600000,"items":\\[\\]}'
+      );
+      request(app.serve.bind(app))
+        .post('/cardDetails')
+        .send({ id: '1480530600000' })
+        .set('Accept', 'application/json')
+        .expect('content-type', 'application/json')
+        .expect(expected)
+        .expect(200, done);
+    });
   });
 });
