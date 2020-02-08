@@ -4,6 +4,7 @@ const { assert } = require('chai');
 const fs = require('fs');
 const app = require('../lib/handlers');
 const database = require('./resource/database.json');
+
 describe('test server', () => {
   let fakeWriteFile, dir, clock, path;
   beforeEach(() => {
