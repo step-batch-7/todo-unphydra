@@ -114,5 +114,14 @@ describe('test server', () => {
           done();
         });
     });
+
+    it('should delete an item from the todo', done => {
+      request(app.serve.bind(app))
+        .post('/deleteItem')
+        .send({ id: '1480530600000:0' })
+        .set('Accept', 'application/json')
+        .expect('content-type', 'application/json')
+        .expect(200, done);
+    });
   });
 });
