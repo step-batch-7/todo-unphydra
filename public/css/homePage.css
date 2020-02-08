@@ -107,6 +107,13 @@ body {
   margin-right: 13px;
 }
 
+.searchItem {
+  background: url(../images/search.png) no-repeat center;
+  background-size: 34px;
+  width: 34px;
+  margin-right: 12px;
+}
+
 .searchInput {
   font-family: Apple SD Gothic Neo;
   width: 130px;
