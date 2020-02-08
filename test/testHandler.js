@@ -114,6 +114,14 @@ describe('test server', () => {
         });
     });
 
+    it('should change the item status', done => {
+      request(app.serve.bind(app))
+        .post('/itemTickStatus')
+        .send({ id: '1480530600000:0', item: 'update' })
+        .set('Accept', 'application/json')
+        .expect(200, done);
+    });
+
     it('should delete an item from the todo', done => {
       const expected = new RegExp('{"id":"1480530600000:0"}');
       request(app.serve.bind(app))
