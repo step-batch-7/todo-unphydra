@@ -172,7 +172,11 @@ describe('test server', () => {
         .set('Accept', 'application/json')
         .expect('content-type', 'application/json')
         .expect(expected)
-        .expect(200, done);
+        .expect(200)
+        .end(() => {
+          sinon.assert.notCalled(fakeWriteFile);
+          done();
+        });
     });
   });
 });
