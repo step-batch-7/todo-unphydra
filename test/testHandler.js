@@ -40,12 +40,15 @@ describe('test server', () => {
 
   describe('POST', () => {
     it('should add a todo with the given titile', done => {
+      const expected = new RegExp(
+        '{"title":"abcde","id":1480530600000,"items":\\[\\]}'
+      );
       request(app.serve.bind(app))
         .post('/title')
         .send({ title: 'abcde' })
         .set('Accept', 'application/json')
         .expect('content-type', 'application/json')
-        .expect(/{"title":"abcde","id":1480530600000,"items":\[\]}/)
+        .expect(expected)
         .expect(200)
         .end(() => {
           database['1480530600000'] = {
@@ -58,10 +61,6 @@ describe('test server', () => {
           assert.ok(
             fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
           );
-          // console.log(
-          //   Object.getOwnPropertyDescriptors(fakeWriteFile).args
-          // '{"1581081897614":{"title":"test","id":1581081897614,"items":[{"name":"task 1","id":"1581081897614:0","status":false}],"noOfItem":5},"1480530600000":{"title":"abcde","id":1480530600000,"items":[],"noOfItem":0}}'
-          // );
           done();
         });
     });
