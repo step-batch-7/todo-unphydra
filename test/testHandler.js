@@ -58,6 +58,10 @@ describe('test server', () => {
           assert.ok(
             fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
           );
+          // console.log(
+          //   Object.getOwnPropertyDescriptors(fakeWriteFile).args
+          // '{"1581081897614":{"title":"test","id":1581081897614,"items":[{"name":"task 1","id":"1581081897614:0","status":false}],"noOfItem":5},"1480530600000":{"title":"abcde","id":1480530600000,"items":[],"noOfItem":0}}'
+          // );
           done();
         });
     });
@@ -87,6 +91,20 @@ describe('test server', () => {
           );
           done();
         });
+    });
+
+    it('should update an item name', done => {
+      const expected = new RegExp(
+        '{"id":1480530600000,' +
+          '"item":{"name":"update","id":"1480530600000:0","status":false}}'
+      );
+      request(app.serve.bind(app))
+        .post('/updateItem')
+        .send({ id: '1480530600000:0', item: 'update' })
+        .set('Accept', 'application/json')
+        .expect('content-type', 'application/json')
+        .expect(expected)
+        .expect(200, done);
     });
   });
 });
