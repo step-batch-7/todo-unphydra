@@ -15,7 +15,7 @@ const getAllTodoList = () => document.getElementById('allTodoList');
 const getElement = id => document.getElementById(id);
 const getChildTick = id => {
   const first = 0;
-  document.getElementById(id).children[first].children[first];
+  return document.getElementById(id).children[first].children[first];
 };
 const getArray = classes => Array.from(classes);
 

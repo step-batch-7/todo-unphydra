@@ -46,7 +46,7 @@ const toggleDone = function(id) {
 
 const sendTickStatus = function(id, status) {
   const content = JSON.stringify({ id, status: status });
-  post('/itemTickStatus', content, 'application/json', () => {});
+  post('/itemTickStatus', content, () => {});
 };
 
 const modifyItemList = function(req) {

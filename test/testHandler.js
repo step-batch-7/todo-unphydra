@@ -36,6 +36,12 @@ describe('test server', () => {
         .expect(JSON.stringify(database))
         .expect(200, done);
     });
+
+    it('should give not found', done => {
+      request(app.serve.bind(app))
+        .get('/badFile')
+        .expect(404, done);
+    });
   });
 
   describe('POST', () => {
