@@ -67,11 +67,6 @@ body {
   background: linear-gradient(90deg, #f2c94c 0%, #eb5757 100%);
 }
 
-.sideBox {
-  width: 365px;
-  background: #202124;
-}
-
 .options {
   width: 200px;
   height: 36px;
@@ -92,7 +87,7 @@ body {
   position: absolute;
   width: 960px;
   max-height: 630px;
-  left: 320px;
+  left: 240px;
   top: 107px;
   padding: 20px;
   display: flex;
