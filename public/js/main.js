@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 const main = function() {
+  addEventListenerToInput();
   get('/status', showTodoOnLoad);
 };
+
+document.onload = main;
 
 const showTodoOnLoad = function(req) {
   const allTodoList = getAllTodoList();
@@ -18,6 +21,7 @@ const getChildTick = id => {
   return document.getElementById(id).children[first].children[first];
 };
 const getArray = classes => Array.from(classes);
+const getElements = (box, name) => box.getElementsByClassName(name);
 
 const enableFocus = function(id) {
   const itemList = document.getElementById(id);
@@ -42,4 +46,18 @@ const enableBorder = function(div) {
   div.focus();
 };
 
-document.onload = main;
+const addEventListenerToInput = function() {
+  const inputsBox = getArray(getElements(document, 'searchInput'));
+  inputsBox.forEach(box => {
+    box.addEventListener('focus', addFocusEvent.bind(null, box));
+    box.addEventListener('focusout', removeFocusEvent.bind(null, box));
+  });
+};
+
+const addFocusEvent = function(box) {
+  box.parentElement.classList.add('marginZero');
+};
+
+const removeFocusEvent = function(box) {
+  box.parentElement.classList.remove('marginZero');
+};

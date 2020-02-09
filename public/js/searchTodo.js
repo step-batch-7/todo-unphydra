@@ -1,5 +1,3 @@
-const getElements = (box, name) => box.getElementsByClassName(name);
-
 const getTitle = todo => todo.lastElementChild.firstElementChild.innerText;
 
 const getName = item => item.lastElementChild.innerText;
