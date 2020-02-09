@@ -23,32 +23,34 @@
     <div id="container" class="container">
       <div class="headerOfPage">ToDo</div>
       <div class="horizontalLine"></div>
-      <div>
-        <div class="options" id="create" onclick="createNewTodo()">
-          Create
-        </div>
-        <div class="options" id="delete" onclick="deleteTodos()">
-          Delete
-        </div>
-        <div class="options">
-          <div class="searchTodo"></div>
-          <input
-            type="search"
-            class="searchInput"
-            placeholder="Search Todo"
-            oninput="searchTodoByTitle(this.value)"
-          />
-        </div>
-        <div class="options">
-          <div class="searchItem"></div>
-          <input
-            type="search"
-            class="searchInput"
-            placeholder="Search Item"
-            oninput="searchItemInTodoByName(this.value)"
-          />
-        </div>
+
+      <div class="options" id="create" onclick="createNewTodo()">
+        <div>Create</div>
+        <div class="addTodoLogo"></div>
       </div>
+      <div class="options" id="delete" onclick="deleteTodos()">
+        <div>Delete</div>
+        <div class="deleteTodoLogo"></div>
+      </div>
+      <div class="options">
+        <input
+          type="search"
+          class="searchInput"
+          placeholder="Search Todo"
+          oninput="searchTodoByTitle(this.value)"
+        />
+        <div class="searchTodo"></div>
+      </div>
+      <div class="options">
+        <input
+          type="search"
+          class="searchInput"
+          placeholder="Search Item"
+          oninput="searchItemInTodoByName(this.value)"
+        />
+        <div class="searchItem"></div>
+      </div>
+
       <div id="allTodoList"></div>
     </div>
   </body>

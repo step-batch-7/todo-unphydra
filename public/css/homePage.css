@@ -78,9 +78,19 @@ body {
   background: #f2994a;
   border-radius: 0px 30px 30px 0px;
   margin: 20px 0px;
+  margin-left: -160px;
   padding: 7px 0px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  transition: 500ms ease-in-out;
+}
+
+.options:hover {
+  margin-left: 0px;
+}
+
+.marginCls {
+  margin-left: 0px;
 }
 
 #allTodoList {
@@ -98,15 +108,37 @@ body {
 
 .searchTodo {
   background: url(../images/clipboard-list-solid.svg) no-repeat center;
-  width: 26px;
-  margin-right: 13px;
+  width: 27px;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-top: -4px;
 }
 
 .searchItem {
   background: url(../images/search.png) no-repeat center;
   background-size: 34px;
   width: 34px;
-  margin-right: 12px;
+  margin-left: 20px;
+  margin-right: 7px;
+}
+
+.deleteTodoLogo {
+  background: url(../images/trash-alt-solid.svg) no-repeat center;
+  height: 32px;
+  width: 32px;
+  margin-left: 27px;
+  margin-right: 8px;
+  margin-top: 3px;
+}
+
+.addTodoLogo {
+  background: url(../images/addTodo.svg) no-repeat center;
+  background-size: 27px;
+  width: 42px;
+  height: 42px;
+  align-self: center;
+  margin-right: 4px;
+  margin-left: 21px;
 }
 
 .searchInput {
