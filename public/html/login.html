@@ -9,6 +9,7 @@
     <title>ToDo</title>
     <link rel="stylesheet" href="../css/homePage.css" />
     <link rel="stylesheet" href="../css/login.css" />
+    <script src="../js/loginTemplates.js"></script>
     <script src="../js/login.js"></script>
     <script src="../js/sendRequest.js"></script>
   </head>
@@ -17,21 +18,6 @@
       <div class="headerOfPage">ToDo</div>
       <div class="horizontalLine"></div>
     </div>
-    <div id="loginBox">
-      <div class="login-header"></div>
-      <div class="login-icon"></div>
-      <div>
-        <div class="login-label">username</div>
-        <input type="text" class="login-label-value" id="username" />
-        <div class="login-label">password</div>
-        <input type="password" class="login-label-value" id="password" />
-        <button class="login-button" onclick="checkAndSend()">
-          Login
-        </button>
-      </div>
-      <footer class="login-footer">
-        Need an account? click <button>SignUp</button>
-      </footer>
-    </div>
+    <div id="loginBox"></div>
   </body>
 </html>
