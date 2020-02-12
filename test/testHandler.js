@@ -4,6 +4,7 @@ const { assert } = require('chai');
 const fs = require('fs');
 const app = require('../lib/handlers');
 const database = require('./resource/database.json');
+const user = require('./resource/user.json');
 
 describe('test server', () => {
   let fakeWriteFile, dir, clock, path;
@@ -33,15 +34,16 @@ describe('test server', () => {
     it('should get allTodos', done => {
       request(app.serve.bind(app))
         .get('/status')
+        .set('Cookie', 'coco=1480530600000')
         .expect('content-type', 'application/json')
-        .expect(JSON.stringify(database))
+        .expect(JSON.stringify(database['abc']))
         .expect(200, done);
     });
 
     it('should give not found', done => {
       request(app.serve.bind(app))
         .get('/badFile')
-        .expect(404, done);
+        .expect(400, done);
     });
   });
 
@@ -53,20 +55,31 @@ describe('test server', () => {
       request(app.serve.bind(app))
         .post('/title')
         .send({ title: 'abcde' })
+        .set('Cookie', 'coco=1480530600000')
         .set('Accept', 'application/json')
         .expect('content-type', 'application/json')
         .expect(expected)
         .expect(200)
         .end(() => {
-          database['1480530600000'] = {
+          database['abc']['1480530600000'] = {
             title: 'abcde',
             id: 1480530600000,
             items: [],
             noOfItem: 0
           };
-          sinon.assert.calledOnce(fakeWriteFile);
-          assert.ok(
-            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          sinon.assert.calledTwice(fakeWriteFile);
+          // console.log(
+          //   Object.getOwnPropertyDescriptors(fakeWriteFile).args
+          // );
+
+          // console.log(fakeWriteFile.getCall(0).lastArg);
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(0).lastArg,
+            JSON.stringify(database)
+          );
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(1).lastArg,
+            JSON.stringify(user)
           );
           done();
         });
@@ -81,19 +94,25 @@ describe('test server', () => {
         .post('/addItem')
         .send({ id: 1480530600000, item: 'task' })
         .set('Accept', 'application/json')
+        .set('Cookie', 'coco=1480530600000')
         .expect('content-type', 'application/json')
         .expect(expected)
         .expect(200)
         .end(() => {
-          database['1480530600000'].items.push({
+          database['abc']['1480530600000'].items.push({
             name: 'task',
             id: '1480530600000:0',
             status: false
           });
-          database['1480530600000'].noOfItem = 1;
-          sinon.assert.calledOnce(fakeWriteFile);
-          assert.ok(
-            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          database['abc']['1480530600000'].noOfItem = 1;
+          sinon.assert.calledTwice(fakeWriteFile);
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(0).lastArg,
+            JSON.stringify(database)
+          );
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(1).lastArg,
+            JSON.stringify(user)
           );
           done();
         });
@@ -108,19 +127,25 @@ describe('test server', () => {
         .post('/addItem')
         .send({ id: 1480530600000, item: 'task2' })
         .set('Accept', 'application/json')
+        .set('Cookie', 'coco=1480530600000')
         .expect('content-type', 'application/json')
         .expect(expected)
         .expect(200)
         .end(() => {
-          database['1480530600000'].items.push({
+          database['abc']['1480530600000'].items.push({
             name: 'task2',
             id: '1480530600000:1',
             status: false
           });
-          database['1480530600000'].noOfItem = 2;
-          sinon.assert.calledOnce(fakeWriteFile);
-          assert.ok(
-            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          database['abc']['1480530600000'].noOfItem = 2;
+          sinon.assert.calledTwice(fakeWriteFile);
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(0).lastArg,
+            JSON.stringify(database)
+          );
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(1).lastArg,
+            JSON.stringify(user)
           );
           done();
         });
@@ -135,14 +160,20 @@ describe('test server', () => {
         .post('/updateItem')
         .send({ id: '1480530600000:0', item: 'update' })
         .set('Accept', 'application/json')
+        .set('Cookie', 'coco=1480530600000')
         .expect('content-type', 'application/json')
         .expect(expected)
         .expect(200)
         .end(() => {
-          database['1480530600000'].items[0].name = 'update';
-          sinon.assert.calledOnce(fakeWriteFile);
-          assert.ok(
-            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          database['abc']['1480530600000'].items[0].name = 'update';
+          sinon.assert.calledTwice(fakeWriteFile);
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(0).lastArg,
+            JSON.stringify(database)
+          );
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(1).lastArg,
+            JSON.stringify(user)
           );
           done();
         });
@@ -153,12 +184,18 @@ describe('test server', () => {
         .post('/itemTickStatus')
         .send({ id: '1480530600000:0', status: true })
         .set('Accept', 'application/json')
+        .set('Cookie', 'coco=1480530600000')
         .expect(200)
         .end(() => {
-          database['1480530600000'].items[0].status = true;
-          sinon.assert.calledOnce(fakeWriteFile);
-          assert.ok(
-            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          database['abc']['1480530600000'].items[0].status = true;
+          sinon.assert.calledTwice(fakeWriteFile);
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(0).lastArg,
+            JSON.stringify(database)
+          );
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(1).lastArg,
+            JSON.stringify(user)
           );
           done();
         });
@@ -170,14 +207,20 @@ describe('test server', () => {
         .post('/deleteItem')
         .send({ id: '1480530600000:0' })
         .set('Accept', 'application/json')
+        .set('Cookie', 'coco=1480530600000')
         .expect('content-type', 'application/json')
         .expect(expected)
         .expect(200)
         .end(() => {
-          database['1480530600000'].items.splice(0, 1);
-          sinon.assert.calledOnce(fakeWriteFile);
-          assert.ok(
-            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          database['abc']['1480530600000'].items.splice(0, 1);
+          sinon.assert.calledTwice(fakeWriteFile);
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(0).lastArg,
+            JSON.stringify(database)
+          );
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(1).lastArg,
+            JSON.stringify(user)
           );
           done();
         });
@@ -191,14 +234,20 @@ describe('test server', () => {
         .post('/updateTitle')
         .send({ id: '1480530600000', title: 'newTitle' })
         .set('Accept', 'application/json')
+        .set('Cookie', 'coco=1480530600000')
         .expect('content-type', 'application/json')
         .expect(expected)
         .expect(200)
         .end(() => {
-          database['1480530600000'].title = 'newTitle';
-          sinon.assert.calledOnce(fakeWriteFile);
-          assert.ok(
-            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          database['abc']['1480530600000'].title = 'newTitle';
+          sinon.assert.calledTwice(fakeWriteFile);
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(0).lastArg,
+            JSON.stringify(database)
+          );
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(1).lastArg,
+            JSON.stringify(user)
           );
           done();
         });
@@ -212,6 +261,7 @@ describe('test server', () => {
         .post('/cardDetails')
         .send({ id: '1480530600000' })
         .set('Accept', 'application/json')
+        .set('Cookie', 'coco=1480530600000')
         .expect('content-type', 'application/json')
         .expect(expected)
         .expect(200)
@@ -227,14 +277,20 @@ describe('test server', () => {
         .post('/deleteTodos')
         .send(['1480530600000'])
         .set('Accept', 'application/json')
+        .set('Cookie', 'coco=1480530600000')
         .expect('content-type', 'application/json')
         .expect(expected)
         .expect(200)
         .end(() => {
-          delete database['1480530600000'];
-          sinon.assert.calledOnce(fakeWriteFile);
-          assert.ok(
-            fakeWriteFile.calledWithExactly(path, JSON.stringify(database))
+          delete database['abc']['1480530600000'];
+          sinon.assert.calledTwice(fakeWriteFile);
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(0).lastArg,
+            JSON.stringify(database)
+          );
+          assert.deepStrictEqual(
+            fakeWriteFile.getCall(1).lastArg,
+            JSON.stringify(user)
           );
           done();
         });
