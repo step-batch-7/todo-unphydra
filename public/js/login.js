@@ -16,7 +16,7 @@ const checkAndSend = function(type) {
   post(`/${type}`, JSON.stringify({ username, password }), callAfterLogin);
 };
 const callAfterLogin = function(req) {
-  window.location.href = 'homePage.html';
+  window.location.href = 'html/homePage.html';
 };
 
 window.onload = main;
