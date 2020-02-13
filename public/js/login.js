@@ -19,9 +19,6 @@ const callAfterLogin = function(req) {
   if (req.response.status === 'login') {
     showLogin();
   }
-  if (req.response.status === 'done') {
-    window.location.href = 'html/homePage.html';
-  }
 };
 
 window.onload = main;
